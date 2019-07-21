@@ -5,9 +5,7 @@
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
-      "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,6 +14,9 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#f26f28"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
