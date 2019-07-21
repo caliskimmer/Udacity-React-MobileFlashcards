@@ -12,6 +12,7 @@ import DeckList from './components/DeckList';
 
 // dev created misc imports
 import reducer from './reducers';
+import middleware from './middleware';
 import { white, orange } from './utils/colors';
 
 const RouteConfig = {
@@ -41,7 +42,7 @@ const NavigationConfig = {
             height: 56,
             backgroundColor: orange,
         }
-    }
+    },
 };
 
 const Tabs = createMaterialTopTabNavigator(RouteConfig, NavigationConfig);
@@ -49,7 +50,7 @@ const Tabs = createMaterialTopTabNavigator(RouteConfig, NavigationConfig);
 const MainNavigator = createStackNavigator({
    Home: {
        screen: Tabs
-   },
+   }
 });
 
 const MainContainer = createAppContainer(MainNavigator);
@@ -57,7 +58,7 @@ const MainContainer = createAppContainer(MainNavigator);
 export default class App extends Component {
     render() {
         return (
-            <Provider store={createStore(reducer)}>
+            <Provider store={createStore(reducer, middleware)}>
                 <View style={{flex: 1}}>
                     <StatusBar
                         backgroundColor={orange}
@@ -68,7 +69,3 @@ export default class App extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-});
-
