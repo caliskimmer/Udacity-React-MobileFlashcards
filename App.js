@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AddDeck from './components/AddDeck';
 import DeckList from './components/DeckList';
 import DeckView from './components/DeckView';
-import DeckConfig from './components/DeckConfig';
+import AddCard from './components/AddCard';
 
 // dev created misc imports
 import reducer from './reducers';
@@ -63,6 +63,14 @@ const MainNavigator = createStackNavigator({
             headerStyle: {backgroundColor: orange},
             headerTintColor: white,
             headerTitle: 'DeckView'
+        }
+    },
+    AddCard: {
+        screen: AddCard,
+        navigationOptions: {
+            headerStyle: {backgroundColor: orange},
+            headerTintColor: white,
+            headerTitle: 'Add Card'
         }
     }
 });

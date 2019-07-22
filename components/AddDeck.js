@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 // dev imports
 import { addDeck } from '../actions';
-import { red, orange } from '../utils/colors';
+import { red, orange, green } from '../utils/colors';
 
 class AddDeck extends Component {
     state = {
@@ -67,7 +67,7 @@ class AddDeck extends Component {
                 <View style={styles.button}>
                     <Button
                         onPress={this.createDeck}
-                        color={red}
+                        color={green}
                         title='Create Deck'
                     />
                 </View>

@@ -31,9 +31,8 @@ class DeckList extends Component {
     goToDeckView(key) {
         const { navigation } = this.props;
         navigation.navigate({
-            routeName: 'DeckNavigator',
+            routeName: 'DeckView',
             params: {title: key},
-            action: navigation.navigate({ routeName: 'DeckView' })
         });
     }
 
