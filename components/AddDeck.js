@@ -32,8 +32,15 @@ class AddDeck extends Component {
             };
             this.props.handleAddDeck(deck);
 
-            // After deck creation, go back to main screen
-            this.props.navigation.goBack();
+            // After deck creation, reset state and go back to main screen
+            this.setState(() => {
+                return {
+                    deckName: null,
+                    submitPressed: false
+                };
+            }, () => {
+                this.props.navigation.goBack();
+            });
         });
     };
 
@@ -46,6 +53,7 @@ class AddDeck extends Component {
                     <Text style={{textAlign: 'center'}}>What is the title of your new deck?</Text>
                     <View style={styles.textInput}>
                         <TextInput
+                            value={this.state.deckName}
                             placeholder='Deck Name'
                             onChangeText = {text => this.setState({deckName: text })}
                         />

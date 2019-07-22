@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
-import { createMaterialTopTabNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
+import { View, StatusBar } from 'react-native';
+import {
+    createMaterialTopTabNavigator,
+    createStackNavigator,
+    createAppContainer,
+    SafeAreaView
+} from 'react-navigation';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 
 // dev created component imports
 import AddDeck from './components/AddDeck';
 import DeckList from './components/DeckList';
+import DeckView from './components/DeckView';
+import DeckConfig from './components/DeckConfig';
 
 // dev created misc imports
 import reducer from './reducers';
 import middleware from './middleware';
 import { white, orange } from './utils/colors';
 
-const RouteConfig = {
+// Tab Configuration on main screen
+const tabRouteConfig = {
     DeckList: {
         screen: DeckList,
         navigationOptions: {
@@ -29,10 +36,9 @@ const RouteConfig = {
             tabBarLabel: 'Add',
             tabBarIcon: ({tintColor}) => <Ionicons name='add' size={30} color={tintColor} />
         }
-    }
+    },
 };
-
-const NavigationConfig = {
+const tabNavigationConfig = {
     navigationOptions: {
         header: null
     },
@@ -44,18 +50,30 @@ const NavigationConfig = {
         }
     },
 };
+const Tabs = createMaterialTopTabNavigator(tabRouteConfig, tabNavigationConfig);
 
-const Tabs = createMaterialTopTabNavigator(RouteConfig, NavigationConfig);
-
+// Set up universal stack navigator
 const MainNavigator = createStackNavigator({
-   Home: {
-       screen: Tabs
-   }
+    Home: {
+        screen: Tabs
+    },
+    DeckView: {
+        screen: DeckView,
+        navigationOptions: {
+            headerStyle: {backgroundColor: orange},
+            headerTintColor: white,
+            headerTitle: 'DeckView'
+        }
+    }
 });
 
 const MainContainer = createAppContainer(MainNavigator);
 
 export default class App extends Component {
+    componentDidMount() {
+        // Needed to remove header padding for opaque status bars
+        SafeAreaView.setStatusBarHeight(0);
+    }
     render() {
         return (
             <Provider store={createStore(reducer, middleware)}>
