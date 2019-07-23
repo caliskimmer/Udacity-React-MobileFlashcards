@@ -27,3 +27,15 @@ The device must have Expo installed
 * install all project dependencies with `yarn install`
 * start the development server with `yarn start`
 * Once the app is started, press 'a' (if using expo-cli) to load the app on an android emulator or scan the QR code with your device
+
+## Screenshots
+
+![Main Screen](screenshots/main-screen.png)
+
+![Deck View](screenshots/deck-view.png)
+
+![New Deck](screenshots/new-deck.png)
+
+![Quiz View](screenshots/quiz-view.png)
+
+![Result View](screenshots/result-view.png)
