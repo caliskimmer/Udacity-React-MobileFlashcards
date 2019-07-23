@@ -3,8 +3,8 @@ import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 // dev imported
+import { clearNotification, setNotification } from '../utils/notifications';
 import { green, red, blue } from '../utils/colors';
-import {ListView} from "react-native-web";
 
 function NoCardsInDeck() {
     return (
@@ -47,9 +47,15 @@ class QuizView extends Component {
         quizComplete: false,
     };
 
+    componentDidMount() {
+        // We started a quiz, so no need for a reminder until tomorrow
+        clearNotification().then(setNotification);
+    }
+
     handleQuizUpdate = (isCorrect) => {
         // if quiz complete, update last answer and then switch to result view
         if (this.state.whatQuestion === this.props.deck.cards.length) {
+            this.props.navigation.setParams({title: 'Back to Deck'});
             this.setState((prevState) => {
                 return {
                     numCorrect: isCorrect ? prevState.numCorrect+1 : prevState.numCorrect,

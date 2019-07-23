@@ -11,6 +11,12 @@ class DeckView extends Component {
         willDelete: false
     };
 
+    componentDidMount() {
+        // Set header title to deck name
+        const { navigation, title } = this.props;
+        navigation.setParams({title: title});
+    }
+
     handleDeleteDeck(deck) {
         const { deleteDeck, navigation } = this.props;
 
