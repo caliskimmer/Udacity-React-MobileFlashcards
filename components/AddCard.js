@@ -29,7 +29,7 @@ class AddCard extends Component {
             }
         }, () => {
             // Both question and answer must have a value
-            if (!questionText && !answerText) {
+            if (!questionText || !answerText) {
                 return;
             }
 
