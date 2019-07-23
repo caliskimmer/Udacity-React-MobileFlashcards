@@ -33,6 +33,14 @@ class DeckView extends Component {
         });
     }
 
+    goToQuiz() {
+        const { navigation } = this.props;
+        navigation.navigate({
+            routeName: 'QuizView',
+            params: {deck: this.props.data}
+        })
+    }
+
     shouldComponentUpdate() {
         return !this.state.willDelete;
     }
@@ -60,7 +68,7 @@ class DeckView extends Component {
                     <View style={styles.button}>
                         <Button
                             title='Start Quiz'
-                            onPress={() => { return null; }}
+                            onPress={() => this.goToQuiz()}
                             color={green} />
                     </View>
                     <View style={{marginVertical: 50}}>

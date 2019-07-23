@@ -15,6 +15,7 @@ import AddDeck from './components/AddDeck';
 import DeckList from './components/DeckList';
 import DeckView from './components/DeckView';
 import AddCard from './components/AddCard';
+import QuizView from './components/QuizView';
 
 // dev created misc imports
 import reducer from './reducers';
@@ -71,6 +72,14 @@ const MainNavigator = createStackNavigator({
             headerStyle: {backgroundColor: orange},
             headerTintColor: white,
             headerTitle: 'Add Card'
+        }
+    },
+    QuizView: {
+        screen: QuizView,
+        navigationOptions: {
+            headerStyle: {backgroundColor: orange},
+            headerTintColor: white,
+            headerTitle: 'Quiz'
         }
     }
 });
