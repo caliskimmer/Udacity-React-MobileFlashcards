@@ -20,6 +20,7 @@ import QuizView from './components/QuizView';
 // dev created misc imports
 import reducer from './reducers';
 import middleware from './middleware';
+import { setNotification } from './utils/notifications';
 import { white, orange } from './utils/colors';
 
 // Tab Configuration on main screen
@@ -28,14 +29,14 @@ const tabRouteConfig = {
         screen: DeckList,
         navigationOptions: {
             tabBarLabel: 'Decks',
-            tabBarIcon: ({tintColor}) => <Ionicons name='filing' size={30} color={tintColor} />
+            tabBarIcon: ({tintColor}) => <Ionicons name='md-filing' size={30} color={tintColor} />
         }
     },
     AddDeck: {
         screen: AddDeck,
         navigationOptions: {
             tabBarLabel: 'Add',
-            tabBarIcon: ({tintColor}) => <Ionicons name='add' size={30} color={tintColor} />
+            tabBarIcon: ({tintColor}) => <Ionicons name='md-add' size={30} color={tintColor} />
         }
     },
 };
@@ -44,9 +45,10 @@ const tabNavigationConfig = {
         header: null
     },
     tabBarOptions: {
+        showIcon: true,
         activeTintColor: white,
         style: {
-            height: 56,
+            height: 65,
             backgroundColor: orange,
         }
     },
@@ -60,11 +62,11 @@ const MainNavigator = createStackNavigator({
     },
     DeckView: {
         screen: DeckView,
-        navigationOptions: {
+        navigationOptions: ({navigation}) => ({
             headerStyle: {backgroundColor: orange},
             headerTintColor: white,
-            headerTitle: 'DeckView'
-        }
+            headerTitle: navigation.state.params.title
+        })
     },
     AddCard: {
         screen: AddCard,
@@ -76,11 +78,11 @@ const MainNavigator = createStackNavigator({
     },
     QuizView: {
         screen: QuizView,
-        navigationOptions: {
+        navigationOptions: ({navigation}) => ({
             headerStyle: {backgroundColor: orange},
             headerTintColor: white,
-            headerTitle: 'Quiz'
-        }
+            headerTitle: navigation.state.params.title
+        })
     }
 });
 
@@ -90,6 +92,9 @@ export default class App extends Component {
     componentDidMount() {
         // Needed to remove header padding for opaque status bars
         SafeAreaView.setStatusBarHeight(0);
+
+        // Set notifications necessary for app
+        setNotification();
     }
     render() {
         return (
